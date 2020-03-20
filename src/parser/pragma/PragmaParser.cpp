@@ -75,7 +75,8 @@ unsigned int PragmaParser::number = 0;
 unsigned int PragmaParser::file_counter = 0;
 
 // constructor
-PragmaParser::PragmaParser(const pragma_managerRef _PM, const ParameterConstRef _Param) : PM(_PM), debug_level(_Param->get_class_debug_level(GET_CLASS(*this))), Param(_Param), level(0), search_function(false)
+//PragmaParser::PragmaParser(const pragma_managerRef _PM, const ParameterConstRef _Param) : PM(_PM), debug_level(_Param->get_class_debug_level(GET_CLASS(*this))), Param(_Param), level(0), search_function(false)
+PragmaParser::PragmaParser(const pragma_managerRef _PM, const ParameterConstRef _Param) : PM(_PM), debug_level(DEBUG_LEVEL_VERY_PEDANTIC), Param(_Param), level(0), search_function(false)
 {
    THROW_ASSERT(PM, "Pragma manager not initialized");
 }
@@ -85,6 +86,8 @@ PragmaParser::~PragmaParser() = default;
 
 std::string PragmaParser::substitutePragmas(const std::string& OldFile)
 {
+   #define INDENT_DBG_MEX INDENT_OUT_MEX
+   
    INDENT_DBG_MEX(DEBUG_LEVEL_VERY_PEDANTIC, debug_level, "-->Substituting pragma in " + OldFile);
    THROW_ASSERT(boost::filesystem::exists(boost::filesystem::path(OldFile)), "Input file \"" + OldFile + "\" does not exist");
 

@@ -61,6 +61,7 @@ PragmaSubstitution::PragmaSubstitution(const application_managerRef _AppM, const
     : ApplicationFrontendFlowStep(_AppM, PRAGMA_SUBSTITUTION, _design_flow_manager, _parameters)
 {
    debug_level = parameters->get_class_debug_level(GET_CLASS(*this));
+   debug_level = OUTPUT_LEVEL_VERY_PEDANTIC;
 }
 
 PragmaSubstitution::~PragmaSubstitution() = default;
@@ -92,6 +93,7 @@ const CustomUnorderedSet<std::pair<FrontendFlowStepType, FrontendFlowStep::Funct
 
 DesignFlowStep_Status PragmaSubstitution::Exec()
 {
+   #define INDENT_DBG_MEX INDENT_OUT_MEX
    for(const auto& input_file : AppM->input_files)
    {
       INDENT_DBG_MEX(DEBUG_LEVEL_VERY_PEDANTIC, debug_level, "---Patching file " + input_file.first + "(" + input_file.second + ")");
@@ -102,6 +104,7 @@ DesignFlowStep_Status PragmaSubstitution::Exec()
 
       const PragmaParserRef parser = PragmaParserRef(new PragmaParser(AppM->get_pragma_manager(), parameters));
       const std::string new_file = parser->substitutePragmas(input_file.second);
+      INDENT_DBG_MEX(DEBUG_LEVEL_VERY_PEDANTIC, debug_level, "---New file " + new_file);
       AppM->input_files[input_file.first] = new_file;
    }
    return DesignFlowStep_Status::SUCCESS;

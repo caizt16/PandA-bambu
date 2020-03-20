@@ -583,6 +583,7 @@ void DesignFlowManager::Exec()
          long step_execution_time;
          START_TIME(step_execution_time);
          step->Initialize();
+         INDENT_OUT_MEX(DEBUG_LEVEL_PARANOIC, output_level, "-->C get debug level " + boost::lexical_cast<std::string>(step->CGetDebugLevel()));
          if(step->CGetDebugLevel() >= DEBUG_LEVEL_VERY_PEDANTIC)
          {
             step->PrintInitialIR();

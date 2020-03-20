@@ -81,7 +81,8 @@
 
 PragmaAnalysis::PragmaAnalysis(const application_managerRef _AppM, const DesignFlowManagerConstRef _design_flow_manager, const ParameterConstRef _parameters) : ApplicationFrontendFlowStep(_AppM, PRAGMA_ANALYSIS, _design_flow_manager, _parameters)
 {
-   debug_level = parameters->get_class_debug_level(GET_CLASS(*this), DEBUG_LEVEL_NONE);
+   //debug_level = parameters->get_class_debug_level(GET_CLASS(*this), DEBUG_LEVEL_NONE);
+   debug_level = DEBUG_LEVEL_PARANOIC;
 }
 
 PragmaAnalysis::~PragmaAnalysis() = default;
@@ -456,7 +457,8 @@ void PragmaAnalysis::create_map_pragma(const unsigned int node_id) const
 }
 
 DesignFlowStep_Status PragmaAnalysis::Exec()
-{
+{ 
+   #define INDENT_DBG_MEX INDENT_OUT_MEX
    const tree_managerRef TM = AppM->get_tree_manager();
    const pragma_managerRef PM = AppM->get_pragma_manager();
 
