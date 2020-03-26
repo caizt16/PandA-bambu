@@ -86,7 +86,6 @@ PragmaParser::~PragmaParser() = default;
 
 std::string PragmaParser::substitutePragmas(const std::string& OldFile)
 {
-   #define INDENT_DBG_MEX INDENT_OUT_MEX
    
    INDENT_DBG_MEX(DEBUG_LEVEL_VERY_PEDANTIC, debug_level, "-->Substituting pragma in " + OldFile);
    THROW_ASSERT(boost::filesystem::exists(boost::filesystem::path(OldFile)), "Input file \"" + OldFile + "\" does not exist");
@@ -195,6 +194,7 @@ std::string PragmaParser::substitutePragmas(const std::string& OldFile)
 
 bool PragmaParser::analyze_pragma(std::string& Line)
 {
+   #define INDENT_DBG_MEX INDENT_OUT_MEX
    /// parallelism pragmas
    if(Line.find(STR_CST_pragma_keyword_omp) != std::string::npos)
    {
@@ -233,6 +233,13 @@ bool PragmaParser::analyze_pragma(std::string& Line)
    if(Line.find("profiling") != std::string::npos)
       return recognize_profiling_pragma(Line);
 
+/*
+   
+   /// pipeline pragmas
+   if(Line.find("pipeline") != std::string::npos)
+      return recognize_pipeline_pragma(Line);
+
+*/
    /// generate_hw pragmas
    if(Line.find("generate_hw") != std::string::npos)
    {

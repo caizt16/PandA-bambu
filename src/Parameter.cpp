@@ -346,7 +346,8 @@ void Parameter::SetCommonDefaults()
    setOption(OPT_output_temporary_directory, temporary_directory + "/");
    setOption(OPT_print_dot, false);
 
-   setOption(OPT_no_clean, false);
+   //setOption(OPT_no_clean, false);
+   setOption(OPT_no_clean, true);
    if(revision_hash == "")
       setOption(OPT_revision, "unknown-trunk");
    else

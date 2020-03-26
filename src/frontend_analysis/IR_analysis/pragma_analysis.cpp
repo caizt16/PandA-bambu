@@ -82,7 +82,7 @@
 PragmaAnalysis::PragmaAnalysis(const application_managerRef _AppM, const DesignFlowManagerConstRef _design_flow_manager, const ParameterConstRef _parameters) : ApplicationFrontendFlowStep(_AppM, PRAGMA_ANALYSIS, _design_flow_manager, _parameters)
 {
    //debug_level = parameters->get_class_debug_level(GET_CLASS(*this), DEBUG_LEVEL_NONE);
-   debug_level = DEBUG_LEVEL_PARANOIC;
+   debug_level = DEBUG_LEVEL_PEDANTIC;
 }
 
 PragmaAnalysis::~PragmaAnalysis() = default;
@@ -499,7 +499,8 @@ DesignFlowStep_Status PragmaAnalysis::Exec()
                         it2++;
                         continue;
                      }
-                     INDENT_DBG_MEX(DEBUG_LEVEL_VERY_PEDANTIC, debug_level, "---Find a pragma");
+                     //INDENT_DBG_MEX(DEBUG_LEVEL_VERY_PEDANTIC, debug_level, "---Find a pragma");
+                     INDENT_DBG_MEX(DEBUG_LEVEL_PEDANTIC, debug_level, "---Find a pragma");
                      std::map<TreeVocabularyTokenTypes_TokenEnum, std::string> tree_node_schema;
                      std::string include_name = GetPointer<srcp>(TN)->include_name;
                      unsigned int line_number = GetPointer<srcp>(TN)->line_number;

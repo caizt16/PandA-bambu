@@ -2652,9 +2652,11 @@ int BambuParameter::Exec()
 
    while(optind < argc)
    {
+      INDENT_OUT_MEX(OUTPUT_LEVEL_VERBOSE, getOption<int>(OPT_output_level), "Found file: " + std::string(argv[optind]));
       const auto file_type = GetFileFormat(argv[optind], true);
       if(file_type == Parameters_FileFormat::FF_XML_CON)
       {
+	 INDENT_OUT_MEX(OUTPUT_LEVEL_VERBOSE, getOption<int>(OPT_output_level),  "Found constraint file: " + std::string(argv[optind]));
          setOption(OPT_constraints_file, argv[optind]);
       }
       else if(file_type == Parameters_FileFormat::FF_XML_TEC)

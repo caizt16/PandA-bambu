@@ -143,6 +143,7 @@ DesignFlowStep_Status classic_datapath::InternalExec()
    INDENT_DBG_MEX(DEBUG_LEVEL_VERBOSE, debug_level, "<--");
 
    /// add registers, connecting them to clock and reset ports
+#define INDENT_DBG_MEX INDENT_OUT_MEX
    INDENT_DBG_MEX(DEBUG_LEVEL_VERBOSE, debug_level, "-->Adding registers");
    HLS->Rreg->add_to_SM(clock, reset);
    INDENT_DBG_MEX(DEBUG_LEVEL_VERBOSE, debug_level, "<--");
@@ -160,6 +161,7 @@ DesignFlowStep_Status classic_datapath::InternalExec()
    INDENT_DBG_MEX(DEBUG_LEVEL_VERBOSE, debug_level, "-->Adding interconnections");
    HLS->Rconn->add_to_SM(HLSMgr, HLS, HLS->datapath);
    INDENT_DBG_MEX(DEBUG_LEVEL_VERBOSE, debug_level, "<--");
+#define INDENT_DBG_MEX(dbgLevel, curDbgLevel, mex) void(0)
    unsigned int n_elements = GetPointer<module>(datapath_cir)->get_internal_objects_size();
    if(n_elements == 0)
    {
