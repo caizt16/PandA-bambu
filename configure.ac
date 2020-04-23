@@ -27,11 +27,11 @@ AM_PROG_LEX
 AC_PROG_YACC
 AC_PROG_F77
 #Flags have to be emptied since AC_PROG_CXX and AC_PROG_CC set them to "-g -O2"
-CFLAGS=
-CXXFLAGS=
-CFLAGS_EXT=-O2
-CXXFLAGS_EXT=-O2
-CXXFLAGS_EXTFPLL=-O2
+CFLAGS=-pg
+CXXFLAGS=-pg
+CFLAGS_EXT=-O2 -pg
+CXXFLAGS_EXT=-O2 -pg
+CXXFLAGS_EXTFPLL=-O2 -pg
 
 # Check if compiler support c++17
 AC_COMPILE_STDCXX_17
@@ -262,7 +262,7 @@ AC_ARG_ENABLE(verilator,              [  --disable-verilator          disable th
 
 
 #aid stuff
-AC_ARG_ENABLE(release,             [  --enable-release             compile the source code for release (default enabled)],                                  [panda_RELEASE="$enableval"], [panda_RELEASE="yes"])
+AC_ARG_ENABLE(release,             [  --enable-release             compile the source code for release (default enabled)],                                  [panda_RELEASE="$enableval"], [panda_RELEASE="no"])
 AC_ARG_ENABLE(unordered,           [  --enable-unordered           compile the source code with unordered data structure (default disabled)],               [panda_UNORDERED="$enableval"], [panda_UNORDERED="no"])
 AC_ARG_ENABLE(Werror,              [  --enable-Werror              compile the source code with Werror option; a subset of possible warning is considered], [panda_WERROR="$enableval"])
 AC_ARG_ENABLE(asserts,             [  --disable-asserts            disable most of the runtime check (default enabled)],                                    [panda_ASSERTS="$enableval"], [panda_ASSERTS="yes"])
@@ -276,6 +276,8 @@ AC_ARG_ENABLE(32bits,              [  --enable-32bits              create 32bits
 AC_ARG_ENABLE(flopoco,             [  --enable-flopoco             compile FloPoCo external library],                     [panda_USE_FLOPOCO="$enableval"])
 AC_ARG_ENABLE(icarus,              [  --enable-icarus              compile Icarus Verilog compiler],                      [panda_USE_ICARUS="$enableval"])
 AC_ARG_ENABLE(verilator,           [  --enable-verilator           compile Verilator Verilog compiler],                   [panda_USE_VERILATOR="$enableval"])
+
+AC_ARG_ENABLE(experimental,        [  --enable-experimental        experimenaatl],                                        [panda_USE_EXPERIMENTAL="$enableval"])
 
 ################################################################################
 #                                                                              #
@@ -2478,6 +2480,7 @@ AC_CONFIG_FILES(
    etc/devices/ASIC_devices/Makefile
    etc/devices/Lattice_devices/Makefile
    etc/devices/NanoXplore_devices/Makefile
+   etc/devices/HME_devices/Makefile
    )
 
 

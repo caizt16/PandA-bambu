@@ -6,7 +6,8 @@ for file in $(find  $device_dir -name *-seed.xml*); do
    filename=$(basename $file);
    device=${filename::-9}
    echo $device
-   if [ "$device" = "Nangate_device" ]; then
+   if [ "$device" != "M7A12N0-7F256" ]; then
+   #if [ "$device" != "nx1h35S" ]; then
       continue
    fi
    if [ ! -d $device ]; then
