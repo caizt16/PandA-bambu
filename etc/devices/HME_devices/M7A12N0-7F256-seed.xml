@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<target>
+   <device>
+      <vendor value="HME"/>
+      <family value="M7"/>
+      <model value="A12N0"/>
+      <package value="F256"/>
+      <speed_grade value="-7"/>
+      <BRAM_bitsize_min value="16"/>
+      <BRAM_bitsize_max value="32"/>
+      <DSPs_x_sizes value="18"/>
+      <DSPs_y_sizes value="18"/>
+      <DSPs_rx_sizes value="12"/>
+      <DSPs_ry_sizes value="9"/>
+      <max_lut_size value="6"/>
+   </device>
+   <technology>
+       <library>
+           <name>STD</name>
+           <cell>
+               <name>emb_v1</name>
+               <circuit>
+                   <component_o id="emb_v1">
+                       <description>HME BRAM</description>
+                       <copyright>NA</copyright>  
+                       <authors>NA</authors> 
+                       <license>NA</license>
+                       <specialized>HME</specialized>
+                       <structural_type_descriptor id_type="emb_v1"/>
+                       <port_o id="clka" dir="IN" is_clock="1">
+                           <structural_type_descriptor type="BOOL" size="1"/>
+                           <connected_objects/>
+                       </port_o>
+                       <port_o id="clkb" dir="IN" is_clock="1">
+                           <structural_type_descriptor type="BOOL" size="1"/>
+                           <connected_objects/>
+                       </port_o>
+                       <port_o id="cea" dir="IN">
+                           <structural_type_descriptor type="BOOL"/>
+                       </port_o>
+                       <port_o id="ceb" dir="IN">
+                           <structural_type_descriptor type="BOOL"/>
+                       </port_o>
+                       <port_o id="wea" dir="IN">
+                           <structural_type_descriptor type="BOOL"/>
+                       </port_o>
+                       <port_o id="web" dir="IN">
+                           <structural_type_descriptor type="BOOL"/>
+                       </port_o>
+                       <port_o id="aa" dir="IN">
+                           <structural_type_descriptor type="VECTOR_BOOL" size="1" vector_size="8"/>
+                       </port_o>
+                       <port_o id="ab" dir="IN" >
+                           <structural_type_descriptor type="VECTOR_BOOL" size="1" vector_size="8"/>
+                       </port_o>
+                       <port_o id="da" dir="IN" >
+                           <structural_type_descriptor type="VECTOR_BOOL" size="1" vector_size="8"/>
+                           <connected_objects/>
+                       </port_o>
+                       <port_o id="db" dir="IN">
+                           <structural_type_descriptor type="VECTOR_BOOL" size="1" vector_size="8"/>
+                           <connected_objects/>
+                       </port_o>
+                       <port_o id="qa" dir="OUT">
+                           <structural_type_descriptor type="VECTOR_BOOL" size="1" vector_size="8"/>
+                           <connected_objects/>
+                       </port_o>
+                       <port_o id="qb" dir="OUT">
+                           <structural_type_descriptor type="VECTOR_BOOL" size="1" vector_size="8"/>
+                           <connected_objects/>
+                       </port_o>
+                       <NP_functionality LIBRARY="emb_v1 clka cea wea aa da qa clkb ceb web ab db pb" IP_COMPONENT="emb_v1" VERILOG_PROVIDED="
+M7S_EMB5K #(
+        .modea_sel (4'b1000),
+        .modeb_sel (4'b1000),
+        .porta_wr_mode (2'b01),
+        .portb_wr_mode (2'b01),
+        .porta_reg_out (1'b0),
+        .portb_reg_out (1'b0),
+        .reset_value_a (9'b000000000),
+        .reset_value_b (9'b000000000),
+        .porta_data_width (9),
+        .portb_data_width (9),
+        .operation_mode (&quot;&quot;true_dual_port&quot;&quot;),
+        .init_file (&quot;&quot;&quot;&quot;),
+        .porta_prog (8'b11110000),
+        .portb_prog (8'b00001111)
+)
+u_emb5k_0 (
+        .clka (clka),
+        .clkb (clkb),
+        .rstna (1'b1),
+        .rstnb (1'b1),
+        .cea (cea),
+        .ceb (ceb),
+        .wea (wea),
+        .web (web),
+        .aa ({aa[8:0], 3'b0}),
+        .ab ({ab[8:0], 3'b0}),
+        .da ({da[8], da[8:0], da[7:0]}),
+        .db ({db[8], db[8:0], db[7:0]}),
+        .q ({qb0[8:0], qa0[8:0]})
+);
+                           "
+                           />
+                   </component_o>
+               </circuit>
+           </cell>
+       </library>
+   </technology>
+</target>
