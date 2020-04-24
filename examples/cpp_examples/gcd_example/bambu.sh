@@ -10,7 +10,7 @@ mkdir -p $basename_dir/hls
 cd $basename_dir/hls
 echo "#synthesis and simulation"
 #bambu -v5 --print-dot $root_dir/gcd.cc --compiler=I386_GCC5 --generate-tb=$root_dir/test.xml --no-iob --evaluation --discrepancy --top-fname=gcd 
-bambu -v5 --print-dot $root_dir/gcd.cc --compiler=I386_GCC5 --generate-tb=$root_dir/test.xml --no-iob --evaluation --top-fname=gcd 
+bambu -v5 --print-dot $root_dir/gcd.cc --compiler=I386_GCC5 --generate-tb=$root_dir/test.xml --no-iob --simulate --top-fname=gcd
 return_value=$?
 if test $return_value != 0; then
    exit $return_value

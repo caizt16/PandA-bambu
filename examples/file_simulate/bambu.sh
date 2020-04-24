@@ -1,7 +1,7 @@
 #!/bin/bash
 script=$(readlink -e $0)
 root_dir=$(dirname $script)
-export PATH=../../src:../../../src:/opt/panda/bin:$PATH
+export PATH=../../src:../../../src:/users/caizht/panda/bin:$PATH
 
 mkdir -p 11
 cd 11
